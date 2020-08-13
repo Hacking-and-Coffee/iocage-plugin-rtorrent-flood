@@ -26,21 +26,32 @@ execute.throw = sh, -c, (cat,\
 network.port_range.set = 50000-50000
 network.port_random.set = no
 
+
+# infocon.hackingand.coffee IP
+ip = 76.8.18.85
+network.local_address.set = 76.8.18.85
+
 # Tracker-less torrent and UDP tracker support
 # (conservative settings for 'private' trackers, change for 'public')
 dht.mode.set = disable
-protocol.pex.set = no
-trackers.use_udp.set = no
+protocol.pex.set = 1
+trackers.use_udp.set = 0
+dht.port = 6881
+
+schedule2 = dht_node_1, 5, 0, "dht.add_node=router.utorrent.com:6881"
+schedule2 = dht_node_2, 5, 0, "dht.add_node=dht.transmissionbt.com:6881"
+schedule2 = dht_node_3, 5, 0, "dht.add_node=router.bitcomet.com:6881"
+schedule2 = dht_node_4, 5, 0, "dht.add_node=dht.aelitis.com:6881"
 
 # Peer settings
 throttle.max_uploads.set = 100
 throttle.max_uploads.global.set = 250
 
-throttle.min_peers.normal.set = 20
-throttle.max_peers.normal.set = 60
-throttle.min_peers.seed.set = 30
+throttle.min_peers.normal.set = 10
+throttle.max_peers.normal.set = 80
+throttle.min_peers.seed.set = 10
 throttle.max_peers.seed.set = 80
-trackers.numwant.set = 80
+trackers.numwant.set = 5
 
 protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
 
@@ -101,6 +112,11 @@ execute.nothrow = chmod,770,(cat,(session.path),rtorrent.sock)
 print = (cat, "Logging to ", (cfg.logfile))
 log.open_file = "log", (cfg.logfile)
 log.add_output = "info", "log"
-##log.add_output = "tracker_debug", "log"
+log.add_output = "error", "log"
+log.add_output = "critical", "log"
+log.add_output = "warn", "log"
+log.add_output = "debug", "log"
+log.add_output = "tracker_debug", "log"
+
 
 ### END of rtorrent.rc ###
