@@ -35,8 +35,5 @@ echo "Flood ui credentials" > /root/PLUGIN_INFO
 echo "User: admin" >> /root/PLUGIN_INFO
 echo "Password: admin" >> /root/PLUGIN_INFO
 
-# OpenVPN directory
-mkdir /usr/local/etc/openvpn
-
 # Define firewall rules
 sysrc -f /etc/rc.conf firewall_script="/etc/ipfw.rules"
