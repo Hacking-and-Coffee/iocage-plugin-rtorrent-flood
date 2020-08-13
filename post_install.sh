@@ -36,4 +36,5 @@ echo "User: admin" >> /root/PLUGIN_INFO
 echo "Password: admin" >> /root/PLUGIN_INFO
 
 # Define firewall rules
-sysrc -f /etc/rc.conf firewall_script="/etc/ipfw.rules"
+# TKTK: think this can just be commented out; will test results. Hardware firewall is in place, rather not have local ipfw interference
+#sysrc -f /etc/rc.conf firewall_script="/etc/ipfw.rules"
